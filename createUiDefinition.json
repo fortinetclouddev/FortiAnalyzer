@@ -75,7 +75,7 @@
             },
             "subnets": {
               "subnet1": {
-                "label": "Outside subnet",
+                "label": "Subnet",
                 "defaultValue": {
                   "name": "Subnet1",
                   "addressPrefixSize": "/24"
@@ -100,14 +100,27 @@
             ],
             "constraints": {
               "allowedSizes": [
+                "Standard_A1",
+                "Standard_A2",
                 "Standard_A3",
                 "Standard_A4",
                 "Standard_D2",
+                "Standard_D1",
+                "Standard_D2",
                 "Standard_D3",
                 "Standard_D4",
+                "Standard_D1_v2",
                 "Standard_D2_v2",
                 "Standard_D3_v2",
-                "Standard_D4_v2"
+                "Standard_D4_v2",
+                "Standard_DS1",
+                "Standard_DS2",
+                "Standard_DS3",
+                "Standard_DS4",
+                "Standard_DS1_v2",
+                "Standard_DS2_v2",
+                "Standard_DS3_v2",
+                "Standard_DS4_v2"
               ],
               "required": true
             },
@@ -130,7 +143,8 @@
             "constraints": {
               "allowedTypes": [
                 "Standard_LRS",
-                "Standard_GRS"
+                "Standard_GRS",
+                "Premium_LRS"
               ],
               "required": true
             }
