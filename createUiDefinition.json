@@ -72,11 +72,11 @@
             "type": "Microsoft.Network.VirtualNetworkCombo",
             "label": {
               "virtualNetwork": "Virtual network",
-              "subnet": "Subnet"
+              "subnets": "Subnet"
             },
             "toolTip": {
               "virtualNetwork": "Virtual network name",
-              "subnet": "Subnet required for the FortiAnalyzer solution"
+              "subnets": "Subnet required for the FortiAnalyzer solution"
             },
             "defaultValue": {
               "name": "FortiAnalyzerVNet",
@@ -151,7 +151,7 @@
       },
       {
         "name": "IPConfig",
-        "label": "FortiAnalyzer IP address assignments",
+        "label": "FortiAnalyzer IP address assignment",
         "subLabel": {
           "preValidation": "Configure Public IP Address",
           "postValidation": "Done"
@@ -177,7 +177,7 @@
             },
             "options": {
               "hideNone": true,
-              "hideDomainNameLabel": true 
+              "hideDomainNameLabel": true
             }
           },
           {
