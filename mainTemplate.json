@@ -80,7 +80,8 @@
           }
         },
         "publicIpAddressName": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": ""
         },
         "publicIpAddressType": {
             "defaultValue": "Static",
@@ -100,7 +101,7 @@
         },
         "artifactsBaseUrl": {
           "type": "string",
-          "defaultValue": "https://raw.githubusercontent.com/fortinetclouddev/FortiAnalyzer/1.0.2",
+          "defaultValue": "https://raw.githubusercontent.com/fortinetclouddev/FortiAnalyzer/1.0.3",
           "metadata": {
             "description": "Base URL of the solution template gallery package",
             "artifactsBaseUrl": ""
