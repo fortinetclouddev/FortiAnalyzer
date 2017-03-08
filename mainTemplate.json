@@ -11,7 +11,7 @@
         "FortiAnalyzerName": {
             "type": "string",
             "metadata": {
-              "description": "Name for FortiManager virtual appliance."
+              "description": "Name for FortiAnalyzer virtual appliance."
             }
         },
         "instanceType": {
@@ -21,13 +21,13 @@
         "adminUsername": {
             "type": "string",
             "metadata": {
-              "description": "Username for the FortiManager virtual appliance."
+              "description": "Username for the FortiAnalyzer virtual appliance."
             }
         },
         "adminPassword": {
             "type": "securestring",
             "metadata": {
-              "description": "Password for the FortiManager virtual appliance."
+              "description": "Password for the FortiAnalyzer virtual appliance."
             }
         },
         "storageAccountName": {
@@ -74,7 +74,7 @@
               "description": "Name of the Azure virtual network."
             }
         },
-        "virtualNetworkResourceGroup": {
+        "vnetResourceGroup": {
           "type": "string",
           "metadata": {
             "description": "Resource Group containing the virtual network - or new resource group from above (if new vnet)"
@@ -215,7 +215,7 @@
               "value": "[parameters('subnetPrefix')]"
             },
             "vnetResourceGroup": {
-              "value": "[parameters('virtualNetworkResourceGroup')]"
+              "value": "[parameters('vnetResourceGroup')]"
             },
             "FortinetTags": {
               "value": "[parameters('FortinetTags')]"
