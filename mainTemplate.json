@@ -141,7 +141,7 @@
         },
         "artifactsBaseUrl": {
           "type": "string",
-          "defaultValue": "https://raw.githubusercontent.com/fortinetclouddev/FortiAnalyzer/1.0.4",
+          "defaultValue": "https://raw.githubusercontent.com/fortinetclouddev/FortiAnalyzer/1.0.6",
           "metadata": {
             "description": "Base URL of the solution template gallery package",
             "artifactsBaseUrl": ""
@@ -149,12 +149,10 @@
         }
     },
     "variables": {
-        "vnetId": "[resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks', parameters('vnetName'))]",
-      "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]",
       "networkInterfaceName": "[concat(parameters('FortiAnalyzerName'), '-NIC0')]",
-        "storageAccountSetupURL": "[concat(parameters('artifactsBaseUrl'),'/','storageAccount-',parameters('storageAccountNewOrExisting'),'.json')]",
-        "publicIPSetupURL": "[concat(parameters('artifactsBaseUrl'),'/','publicip-',parameters('publicIPNewOrExistingOrNone'),'.json')]",
-        "virtualNetworkSetupURL": "[concat(parameters('artifactsBaseUrl'),'/','vnet-',parameters('vnetNewOrExisting'),'.json')]"
+      "storageAccountSetupURL": "[concat(parameters('artifactsBaseUrl'),'/','storageAccount-',parameters('storageAccountNewOrExisting'),'.json')]",
+      "publicIPSetupURL": "[concat(parameters('artifactsBaseUrl'),'/','publicip-',parameters('publicIPNewOrExistingOrNone'),'.json')]",
+      "virtualNetworkSetupURL": "[concat(parameters('artifactsBaseUrl'),'/','vnet-',parameters('vnetNewOrExisting'),'.json')]"
     },
     "resources": [
       {
@@ -292,7 +290,7 @@
                     "osDisk": {
                         "name": "[parameters('FortiAnalyzerName')]",
                         "vhd": {
-                            "uri": "[concat('http://',parameters('storageAccountName'),'.blob.core.windows.net/vhds/', parameters('FortiAnalyzerName'), '-', resourceGroup().name, '-osdisk', '.vhd')]"
+                            "uri": "[concat('http://',parameters('storageAccountName'),'.blob.core.windows.net/vhds/', parameters('FortiAnalyzerName'), '-', deployment().name, '-', uniqueString(resourceGroup().id)), '-osdisk', '.vhd')]"
                         },
                         "createOption": "fromImage"
                     },
@@ -303,7 +301,7 @@
                         "diskSizeGB": "1023",
                         "lun": 0,
                         "vhd": {
-                          "uri": "[concat('http://',parameters('storageAccountName'),'.blob.core.windows.net/vhds/', parameters('FortiAnalyzerName'), '-', resourceGroup().name, '-datadisk', '.vhd')]"
+                          "uri": "[concat('http://',parameters('storageAccountName'),'.blob.core.windows.net/vhds/', parameters('FortiAnalyzerName'), '-', deployment().name, '-', uniqueString(resourceGroup().id)), '-datadisk', '.vhd')]"
                         }
                       }
                     ]

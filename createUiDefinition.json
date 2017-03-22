@@ -102,7 +102,6 @@
                 "Standard_A2",
                 "Standard_A3",
                 "Standard_A4",
-                "Standard_D2",
                 "Standard_D1",
                 "Standard_D2",
                 "Standard_D3",
@@ -166,7 +165,7 @@
               }
             },
             "options": {
-              "hideNone": true,
+              "hideNone": false,
               "hideDomainNameLabel": true
             }
           },
