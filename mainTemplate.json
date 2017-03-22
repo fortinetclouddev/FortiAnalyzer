@@ -148,7 +148,8 @@
           }
         }
     },
-    "variables": {
+      "variables": {"vnetId": "[resourceId(parameters('vnetResourceGroup'),'Microsoft.Network/virtualNetworks', parameters('vnetName'))]",
+      "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]",
       "networkInterfaceName": "[concat(parameters('FortiAnalyzerName'), '-NIC0')]",
       "storageAccountSetupURL": "[concat(parameters('artifactsBaseUrl'),'/','storageAccount-',parameters('storageAccountNewOrExisting'),'.json')]",
       "publicIPSetupURL": "[concat(parameters('artifactsBaseUrl'),'/','publicip-',parameters('publicIPNewOrExistingOrNone'),'.json')]",
@@ -251,7 +252,7 @@
               "value": "[variables('networkInterfaceName')]"
             },
             "subnet1Ref": {
-              "value": "[reference('Microsoft.Resources/deployments/SettingUpVirtualNetwork', '2015-01-01').outputs.subnet1ID.value]"
+              "value": "[variables('subnetRef')]"
             },
             "FortinetTags": {
               "value": "[parameters('FortinetTags')]"
