@@ -290,7 +290,7 @@
                     "osDisk": {
                         "name": "[parameters('FortiAnalyzerName')]",
                         "vhd": {
-                            "uri": "[concat('http://',parameters('storageAccountName'),'.blob.core.windows.net/vhds/', parameters('FortiAnalyzerName'), '-', deployment().name, '-', uniqueString(resourceGroup().id)), '-osdisk', '.vhd')]"
+                            "uri": "[concat('http://',parameters('storageAccountName'),'.blob.core.windows.net/vhds/', parameters('FortiAnalyzerName'),'-',deployment().name,'-',uniqueString(resourceGroup().id),'-osdisk.vhd')]"
                         },
                         "createOption": "fromImage"
                     },
@@ -301,7 +301,7 @@
                         "diskSizeGB": "1023",
                         "lun": 0,
                         "vhd": {
-                          "uri": "[concat('http://',parameters('storageAccountName'),'.blob.core.windows.net/vhds/', parameters('FortiAnalyzerName'), '-', deployment().name, '-', uniqueString(resourceGroup().id)), '-datadisk', '.vhd')]"
+                          "uri": "[concat('http://',parameters('storageAccountName'),'.blob.core.windows.net/vhds/', parameters('FortiAnalyzerName'), '-', deployment().name, '-', uniqueString(resourceGroup().id), '-datadisk', '.vhd')]"
                         }
                       }
                     ]
