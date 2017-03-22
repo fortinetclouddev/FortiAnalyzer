@@ -301,7 +301,7 @@
                         "diskSizeGB": "1023",
                         "lun": 0,
                         "vhd": {
-                          "uri": "[concat('http://',parameters('storageAccountName'),'.blob.core.windows.net/vhds/', parameters('FortiAnalyzerName'), '-', deployment().name, '-', uniqueString(resourceGroup().id), '-datadisk', '.vhd')]"
+                          "uri": "[concat('http://',parameters('storageAccountName'),'.blob.core.windows.net/vhds/',parameters('FortiAnalyzerName'),'-',deployment().name,'-',uniqueString(resourceGroup().id),'-datadisk','.vhd')]"
                         }
                       }
                     ]
@@ -326,11 +326,5 @@
                 "product": "fortinet-fortianalyzer"
             }
         }
-    ],
-    "outputs": {
-        "adminUsername": {
-            "type": "string",
-            "value": "[parameters('adminUsername')]"
-        }
-    }
+    ]
 }
