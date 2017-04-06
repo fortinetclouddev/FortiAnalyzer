@@ -185,8 +185,7 @@
                   "label": "Dynamic",
                   "value": "Dynamic"
                 }
-              ],
-              "required": true
+              ]
             }
           }
         ]
