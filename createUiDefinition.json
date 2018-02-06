@@ -211,12 +211,13 @@
       }
     ],
     "outputs": {
-      "FortiAnalyzerName": "[basics('VMName')]",
+      "FortiAnalyzerVAName": "[basics('VMName')]",
       "adminUsername": "[basics('adminUsername')]",
       "adminPassword": "[basics('passwordElement')]",
+      "FortiAnalyzerImageVersion": "[basics('skuSelectorElement').Version]",
       "instanceType": "[steps('NetworkInstanceConfig').vmSize]",
       "publicIpAddressName": "[steps('IPConfig').publicIpAddress.name]",
-      "publicIPAddressType": "[steps('IPConfig').publicIPAddressTypeElement]",
+      "publicIpAddressType": "[steps('IPConfig').publicIPAddressTypeElement]",
       "publicIPNewOrExistingOrNone": "[steps('IPConfig').publicIpAddress.newOrExistingOrNone]",
       "publicIPResourceGroup": "[steps('IPConfig').publicIpAddress.resourceGroup]",
       "location": "[location()]",
