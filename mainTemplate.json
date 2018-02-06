@@ -61,11 +61,7 @@
           }
         },
         "vnetAddressPrefixes": {
-            "type": "string",
-            "defaultValue": "",
-            "metadata": {
-              "description": "Virtual network address space in CIDR notation, example: 10.2.0.0/16"
-            }
+            "type": "array"
         },
         "subnetName": {
             "type": "string",
