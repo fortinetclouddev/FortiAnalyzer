@@ -91,7 +91,7 @@
         },
         "publicIpAddressName": {
             "type": "string",
-            "defaultValue": ""
+            "defaultValue": "uselessStringInCaseNone"
         },
         "publicIpAddressType": {
             "defaultValue": "Static",
@@ -107,7 +107,7 @@
         },
         "publicIPResourceGroup": {
           "type": "string",
-          "defaultValue": "",
+          "defaultValue": "uselessStringInCaseNone",
           "metadata": {
             "description": "Resource group to which the Public IP belongs."
           }
