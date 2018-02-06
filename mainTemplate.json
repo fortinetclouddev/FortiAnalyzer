@@ -297,8 +297,7 @@
             },
             "location": "[parameters('location')]",
             "dependsOn": [
-                "[concat('Microsoft.Resources/deployments/', 'SettingUpPublicIPandFollowing')]",
-                "[concat('Microsoft.Resources/deployments/', 'SettingUpStorageAccount')]"
+                "[variables('networkInterfaceName')]"
             ],
             "properties": {
                 "osProfile": {
