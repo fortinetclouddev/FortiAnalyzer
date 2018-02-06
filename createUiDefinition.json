@@ -1,4 +1,5 @@
 {
+  "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json",
   "handler": "Microsoft.Compute.MultiVm",
   "version": "0.1.2-preview",
   "parameters": {
@@ -13,6 +14,31 @@
           "required": true,
           "regex": "^[A-Za-z0-9]{1,15}$",
           "validationMessage": "Only alphanumeric characters are allowed, and the value must be 1 to 15 characters."
+        }
+      },
+      {
+        "name": "skuSelectorElement",
+        "type": "Microsoft.Common.OptionsGroup",
+        "label": "FortiMail Version",
+        "toolTip": "Select Select which version of FortiAnalyzer you wish to deploy",
+        "defaultValue": "FortiAnalyzer 5.6.2 (BYOL)",
+        "constraints": {
+          "allowedValues": [
+            {
+              "label": "FortiAnalyzer 5.4.4 (BYOL)",
+              "value": {
+                "SKU": "fortinet-fortianalyzer",
+                "Version": "5.4.4"
+              }
+            },
+            {
+              "label": "FortiAnalyzer 5.6.2 (BYOL)",
+              "value": {
+                "SKU": "fortinet-fortianalyzer",
+                "Version": "5.6.2"
+              }
+            }
+          ]
         }
       },
       {
@@ -45,13 +71,13 @@
     ],
     "steps": [
       {
-        "name": "StorageNetworkConfig",
-        "label": "Network and Storage Settings",
+        "name": "NetworkInstanceConfig",
+        "label": "Network and Instance Settings",
         "subLabel": {
-          "preValidation": "Configure the network and storage options",
+          "preValidation": "Configure the network and instance options",
           "postValidation": "Done"
         },
-        "bladeTitle": "Network and storage settings",
+        "bladeTitle": "Network and Instance Settings",
         "elements": [
           {
             "name": "virtualNetwork",
@@ -92,24 +118,32 @@
             "label": "Virtual machine size",
             "toolTip": "The size of virtual machine to provision.",
             "recommendedSizes": [
-              "Standard_D2_v2",
-              "Standard_D3_v2",
-              "Standard_D4_v2"
+              "Standard_F2s_v2",
+              "Standard_F4s_v2"
             ],
             "constraints": {
               "allowedSizes": [
-                "Standard_A1",
-                "Standard_A2",
-                "Standard_A3",
                 "Standard_A4",
-                "Standard_D1",
                 "Standard_D2",
                 "Standard_D3",
                 "Standard_D4",
                 "Standard_D1_v2",
                 "Standard_D2_v2",
                 "Standard_D3_v2",
-                "Standard_D4_v2"
+                "Standard_D4_v2",
+                "Standard_F1",
+                "Standard_F2",
+                "Standard_F4",
+                "Standard_F8",
+                "Standard_F1s",
+                "Standard_F2s",
+                "Standard_F4s",
+                "Standard_F8s",
+                "Standard_F16s",
+                "Standard_F2s_v2",
+                "Standard_F4s_v2",
+                "Standard_F8s_v2",
+                "Standard_F16s_v2"
               ]
             },
             "osPlatform": "Linux",
@@ -119,21 +153,6 @@
               "sku": "fortinet-fortianalyzer"
             },
             "count": "1"
-          },
-          {
-            "name": "storageAccount",
-            "type": "Microsoft.Storage.StorageAccountSelector",
-            "label": "Storage account",
-            "toolTip": "Storage Account for the disk drive of the Virtual FortiAnalyzer.",
-            "defaultValue": {
-              "type": "Standard_LRS"
-            },
-            "constraints": {
-              "allowedTypes": [
-                "Standard_LRS",
-                "Standard_GRS"
-              ]
-            }
           }
         ]
       },
@@ -195,22 +214,23 @@
       "FortiAnalyzerName": "[basics('VMName')]",
       "adminUsername": "[basics('adminUsername')]",
       "adminPassword": "[basics('passwordElement')]",
-      "instanceType": "[steps('StorageNetworkConfig').vmSize]",
+      "instanceType": "[steps('NetworkInstanceConfig').vmSize]",
       "publicIpAddressName": "[steps('IPConfig').publicIpAddress.name]",
       "publicIPAddressType": "[steps('IPConfig').publicIPAddressTypeElement]",
       "publicIPNewOrExistingOrNone": "[steps('IPConfig').publicIpAddress.newOrExistingOrNone]",
       "publicIpAddressResourceGroup": "[steps('IPConfig').publicIpAddress.resourceGroup]",
-      "storageAccountName": "[steps('StorageNetworkConfig').storageAccount.name]",
-      "storageAccountType": "[steps('StorageNetworkConfig').storageAccount.type]",
-      "storageAccountNewOrExisting": "[steps('StorageNetworkConfig').storageAccount.newOrExisting]",
-      "storageAccountResourceGroup": "[steps('StorageNetworkConfig').storageAccount.resourceGroup]",
+      "storageAccountName": "[steps('NetworkInstanceConfig').storageAccount.name]",
+      "storageAccountType": "[steps('NetworkInstanceConfig').storageAccount.type]",
+      "storageAccountNewOrExisting": "[steps('NetworkInstanceConfig').storageAccount.newOrExisting]",
+      "storageAccountResourceGroup": "[steps('NetworkInstanceConfig').storageAccount.resourceGroup]",
       "location": "[location()]",
-      "vnetNewOrExisting": "[steps('StorageNetworkConfig').virtualNetwork.newOrExisting]",
-      "vnetName": "[steps('StorageNetworkConfig').virtualNetwork.name]",
-      "vnetResourceGroup": "[steps('StorageNetworkConfig').virtualNetwork.resourceGroup]",
-      "vnetAddressPrefix": "[steps('StorageNetworkConfig').virtualNetwork.addressPrefix]",
-      "subnetName": "[steps('StorageNetworkConfig').virtualNetwork.subnets.subnet1.name]",
-      "subnetPrefix": "[steps('StorageNetworkConfig').virtualNetwork.subnets.subnet1.addressPrefix]"
+      "vnetNewOrExisting": "[steps('NetworkInstanceConfig').virtualNetwork.newOrExisting]",
+      "vnetName": "[steps('NetworkInstanceConfig').virtualNetwork.name]",
+      "vnetResourceGroup": "[steps('NetworkInstanceConfig').virtualNetwork.resourceGroup]",
+      "vnetAddressPrefix": "[steps('NetworkInstanceConfig').virtualNetwork.addressPrefixes]",
+      "subnetName": "[steps('NetworkInstanceConfig').virtualNetwork.subnets.subnet1.name]",
+      "subnetPrefix": "[steps('NetworkInstanceConfig').virtualNetwork.subnets.subnet1.addressPrefix]",
+      "FortiAnalyzerPrivateIP": "[steps('NetworkInstanceConfig').virtualNetwork.subnets.subnet1.startAddress]"
     }
   }
   }
